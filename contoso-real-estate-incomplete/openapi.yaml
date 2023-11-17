@@ -1,0 +1,57 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Contoso Real Estate API"
+  description: "Find up to date and detailed real estate properties for sale on the market"
+servers:
+  - url: https://abcde-fghijk-abc123def456-8080.app.github.dev/
+paths:
+  /get-listings:
+    get:
+      operationId: getListings
+      summary: "Get a list of properties for sale that match the specified criteria"
+  description: "Returns a list of properties, optionally filtered by providing the city, number of    bedrooms, number of bathrooms and a list of amenities as query parameters."
+      parameters:
+        - name: "city"
+          in: "query"
+          description: "City of the listing"
+          required: false
+          schema:
+            type: "string"
+        - name: "bedrooms"
+          in: "query"
+          description: "Number of bedrooms in the listing"
+          required: false
+          schema:
+            type: "integer"
+        - name: "bathrooms"
+          in: "query"
+          description: "Number of bathrooms in the listing"
+          required: false
+          schema:
+            type: "integer"
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: The title of the property listing
+                    city:
+                      type: string
+                      description: The city of the property
+                    bedrooms:
+                      type: integer
+                      description: The number of bedrooms
+                    bathrooms:
+                      type: integer
+                      description: The number of bathrooms
+                    description:
+                      type: string
+                      description: The description of the property
